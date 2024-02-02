@@ -1,17 +1,30 @@
+-- Desc: 
 --https://docs.ficsit.app/ficsit-networks/latest/lua/examples/InternetCard.html
 
 local urls = {
-  'https://raw.githubusercontent.com/rxi/json.lua/master/json.lua',
+  json = 'https://raw.githubusercontent.com/rxi/json.lua/master/json.lua',
   --'https://raw.githubusercontent.com/rxi/json.lua/master/json.lua'
 }
 
 local json = {}
 
 function main()
- -- get internet card
- local card = computer.getPCIDevices(classes["FINInternetCard"])[1]
 
- for url in values(urls) do
+ json = loadRemoteLibrary(urls.json)
+
+ --test
+ local data = {
+  somekey = "is stuff",
+  otherkey = 42
+ }
+ 
+ print(json.encode(data))
+end
+
+function loadRemoteLibrary(url)
+  -- get internet card
+  local card = computer.getPCIDevices(classes["FINInternetCard"])[1]
+
   -- get url from internet
   print('downloading: '..url)
   local req = card:request(url, "GET", "")
@@ -29,15 +42,7 @@ function main()
   file:write(libdata)
   file:close()
   -- load the library from the file system and use it
-  json = filesystem.doFile(localPath)
- end
-
---test
- local data = {
-  somekey = "is stuff",
-  otherkey = 42
- }
- print(json.encode(data))
+  return filesystem.doFile(localPath)
 end
 
 function values(t)
