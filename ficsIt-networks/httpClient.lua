@@ -1,5 +1,8 @@
 -- Desc: A simple http get request function
-local function getHttp(url)
+
+local httpClient = {}
+
+function httpClient.getHttp(url)
   -- get internet card
   local card = computer.getPCIDevices(classes["FINInternetCard"])[1]
 
@@ -10,7 +13,7 @@ local function getHttp(url)
   return libdata
 end
 
-local function postHttp(url, data)
+function httpClient.postHttp(url, data)
   -- get internet card
   local card = computer.getPCIDevices(classes["FINInternetCard"])[1]
 
@@ -20,3 +23,5 @@ local function postHttp(url, data)
   local _, libdata = req:await()
   return libdata
 end
+
+return httpClient

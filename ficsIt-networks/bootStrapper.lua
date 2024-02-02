@@ -3,20 +3,26 @@
 
 local urls = {
   json = 'https://raw.githubusercontent.com/rxi/json.lua/master/json.lua',
-  --'https://raw.githubusercontent.com/rxi/json.lua/master/json.lua'
+  httpClient = 'https://raw.githubusercontent.com/jagilber/lua/main/ficsIt-networks/httpClient.lua'
 }
 
 local json = {}
+local httpClient = {}
 
 function main()
 
  json = loadRemoteLibrary(urls.json)
+ httpClient = loadRemoteLibrary(urls.httpClient)
 
  --test
  local data = {
   somekey = "is stuff",
   otherkey = 42
  }
+ 
+ --test
+ local httpTest = httpClient.getHttp(urls.httpClient)
+ print(httpTest)
  
  print(json.encode(data))
 end
@@ -46,4 +52,3 @@ function loadRemoteLibrary(url)
 end
 
 main()
-
