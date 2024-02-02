@@ -1,5 +1,5 @@
 -- Desc: A simple http get request function
-function getHttp(url)
+local function getHttp(url)
   -- get internet card
   local card = computer.getPCIDevices(classes["FINInternetCard"])[1]
 
@@ -10,7 +10,7 @@ function getHttp(url)
   return libdata
 end
 
-function postHttp(url, data)
+local function postHttp(url, data)
   -- get internet card
   local card = computer.getPCIDevices(classes["FINInternetCard"])[1]
 
