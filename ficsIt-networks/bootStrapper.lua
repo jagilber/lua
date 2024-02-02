@@ -2,8 +2,10 @@
 --https://docs.ficsit.app/ficsit-networks/latest/lua/examples/InternetCard.html
 
 local urls = {
+  fileSystem = 'https://raw.githubusercontent.com/jagilber/lua/main/ficsIt-networks/fileSystem.lua',
   json = 'https://raw.githubusercontent.com/rxi/json.lua/master/json.lua',
-  httpClient = 'https://raw.githubusercontent.com/jagilber/lua/main/ficsIt-networks/httpClient.lua'
+  httpClient = 'https://raw.githubusercontent.com/jagilber/lua/main/ficsIt-networks/httpClient.lua',
+  threading = 'https://raw.githubusercontent.com/jagilber/lua/main/ficsIt-networks/threading.lua'
 }
 
 local json = {}
