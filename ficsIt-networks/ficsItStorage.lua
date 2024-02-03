@@ -2,15 +2,20 @@
 
 local ficsItStorage = {}
 
-ficsItStorage.splitters = component.proxy(component.findComponent("Splitter"))
-ficsItStorage.containers = component.proxy(component.findComponent("Storage"))
-ficsItStorage.connectors = {}
-ficsItStorage.containerBuffer = {}
-ficsItStorage.containerInvs = {}
-ficsItStorage.splitterContainers = {}
-ficsItStorage.containerMax = {}
+function ficsItStorage.init()
+   ficsItStorage.splitters = component.proxy(component.findComponent("Splitter"))
+   print('splitters: '..#ficsItStorage.splitters)
+   ficsItStorage.containers = component.proxy(component.findComponent("Storage"))
+   print('containers: '..#ficsItStorage.containers)
+   ficsItStorage.connectors = {}
+   ficsItStorage.containerBuffer = {}
+   ficsItStorage.containerInvs = {}
+   ficsItStorage.splitterContainers = {}
+   ficsItStorage.containerMax = {}
+end
 
 function ficsItStorage.split(inputstr, sep)
+ print('splitting: '..inputstr)
  if sep == nil then
   sep = "%s"
  end
@@ -24,8 +29,9 @@ end
 function ficsItStorage.findSplitter(container)
  local id = ficsItStorage.split(container.nick, " ")[2]
  for _, splitter in pairs(ficsItStorage.splitters) do
+   printf('checking splitter: '..splitter.nick)
   if ficsItStorage.split(splitter.nick, " ")[2] == id then
-   print(splitter.nick)
+   print('using splitter.nick: '..splitter.nick)
    return splitter
   end
  end
@@ -34,7 +40,11 @@ end
 
 for _,container in pairs(ficsItStorage.containers) do
  local connector = container:getFactoryConnectors()[1]
- print(connector)
+ print('listening on connector: '..connector)
+ if not ficsItStorage.connectors[connector] then
+  print('adding connector: '..connector)
+ end
+ print('setting connector: '..connector..' to container: '..container.nick)
  ficsItStorage.connectors[connector] = container
  event.listen(connector)
 
@@ -68,4 +78,5 @@ while true do
  end
 end
 
+ficsItStorage.init()
 return ficsItStorage
