@@ -11,6 +11,7 @@ local urls = {
 
 local json = {}
 local httpClient = {}
+local ficsItStorage = {}
 
 function main()
 
@@ -19,17 +20,7 @@ function main()
  ficsItStorage = loadRemoteLibrary(urls.ficsItStorage)
  print(#ficsItStorage.containers)
 
- --test
- local data = {
-  somekey = "is stuff",
-  otherkey = 42
- }
- 
- --test
- local httpTest = httpClient.getHttp(urls.httpClient)
- print(httpTest)
- 
- print(json.encode(data))
+ print(json.encode(#ficsItStorage.containers))
 end
 
 function loadRemoteLibrary(url)
