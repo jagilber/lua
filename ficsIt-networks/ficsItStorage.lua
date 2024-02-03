@@ -2,7 +2,7 @@
 
 local ficsItStorage = {}
 
-function ficsItStorage.init()
+function main()
    ficsItStorage.splitters = component.proxy(component.findComponent("Splitter"))
    print('splitters: '..#ficsItStorage.splitters)
    ficsItStorage.containers = component.proxy(component.findComponent("Storage"))
@@ -29,7 +29,7 @@ end
 function ficsItStorage.findSplitter(container)
  local id = ficsItStorage.split(container.nick, " ")[2]
  for _, splitter in pairs(ficsItStorage.splitters) do
-   printf('checking splitter: '..splitter.nick)
+   print('checking splitter: '..splitter.nick)
   if ficsItStorage.split(splitter.nick, " ")[2] == id then
    print('using splitter.nick: '..splitter.nick)
    return splitter
@@ -78,5 +78,5 @@ while true do
  end
 end
 
-ficsItStorage.init()
+main()
 return ficsItStorage

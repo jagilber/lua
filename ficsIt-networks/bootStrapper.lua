@@ -38,7 +38,7 @@ function loadRemoteLibrary(url)
   filesystem.mount("/dev/tmp", "/")
 
   local localPath = url:match("^.+/(.+)$")
-  print('url data: '..libdata)
+  --print('url data: '..libdata)
   print('saving to file: '..localPath)
   local file = filesystem.open(localPath, "w")
   file:write(libdata)
