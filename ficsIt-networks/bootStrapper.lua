@@ -5,7 +5,8 @@ local urls = {
   fileSystem = 'https://raw.githubusercontent.com/jagilber/lua/main/ficsIt-networks/fileSystem.lua',
   json = 'https://raw.githubusercontent.com/rxi/json.lua/master/json.lua',
   httpClient = 'https://raw.githubusercontent.com/jagilber/lua/main/ficsIt-networks/httpClient.lua',
-  threading = 'https://raw.githubusercontent.com/jagilber/lua/main/ficsIt-networks/threading.lua'
+  threading = 'https://raw.githubusercontent.com/jagilber/lua/main/ficsIt-networks/threading.lua',
+  ficsItStorage = 'https://raw.githubusercontent.com/jagilber/lua/main/ficsIt-networks/ficsItStorage.lua'
 }
 
 local json = {}
@@ -15,6 +16,8 @@ function main()
 
  json = loadRemoteLibrary(urls.json)
  httpClient = loadRemoteLibrary(urls.httpClient)
+ ficsItStorage = loadRemoteLibrary(urls.ficsItStorage)
+ print(#ficsItStorage.containers)
 
  --test
  local data = {
