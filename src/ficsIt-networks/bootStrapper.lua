@@ -2,11 +2,11 @@
 --https://docs.ficsit.app/ficsit-networks/latest/lua/examples/InternetCard.html
 
 local urls = {
-  fileSystem = 'https://raw.githubusercontent.com/jagilber/lua/main/ficsIt-networks/fileSystem.lua',
+  fileSystem = 'https://raw.githubusercontent.com/jagilber/lua-scripts/main/srcficsIt-networks/fileSystem.lua',
   json = 'https://raw.githubusercontent.com/rxi/json.lua/master/json.lua',
-  httpClient = 'https://raw.githubusercontent.com/jagilber/lua/main/ficsIt-networks/httpClient.lua',
-  threading = 'https://raw.githubusercontent.com/jagilber/lua/main/ficsIt-networks/threading.lua',
-  ficsItStorage = 'https://raw.githubusercontent.com/jagilber/lua/main/ficsIt-networks/ficsItStorage.lua'
+  httpClient = 'https://raw.githubusercontent.com/jagilber/lua-scripts/main/srcficsIt-networks/httpClient.lua',
+  threading = 'https://raw.githubusercontent.com/jagilber/lua-scripts/main/srcficsIt-networks/threading.lua',
+  ficsItStorage = 'https://raw.githubusercontent.com/jagilber/lua-scripts/main/srcficsIt-networks/ficsItStorage.lua'
 }
 
 local json = {}
@@ -18,8 +18,23 @@ function main()
  json = loadRemoteLibrary(urls.json)
  httpClient = loadRemoteLibrary(urls.httpClient)
  ficsItStorage = loadRemoteLibrary(urls.ficsItStorage)
+ ficsItStorage.init()
  print(#ficsItStorage.containers)
-
+ local inventories = {}
+ local container = ficsItStorage.containers[1]
+ print('internal name: ' .. container.internalName)
+ print('num factory connections: ' .. container.numFactoryConnections)
+ local factoryConnectors = container:getFactoryConnectors()
+ local factoryConnector = factoryConnectors[1]
+ print('factory connectors 1: ' .. factoryConnector.internalName)
+ local inventory = container:getInventories()[1]
+ print('inventory 1 :' .. inventory.internalName)
+ print('inventory 1 itemcount:' .. inventory.itemCount)
+ print('inventory 1 size:' .. inventory.size)
+ if(inventory.itemCount > 0) then
+   print('inventory 1 stack 1: ' .. inventory:getStack(1).name)
+ end
+ 
  print(json.encode(#ficsItStorage.containers))
 end
 
