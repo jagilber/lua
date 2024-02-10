@@ -19,7 +19,7 @@ function httpClient.postHttp(url, data)
 
   -- get url from internet
   print('posting data to url: '..url)
-  local req = card:request(url, "POST", data)
+  local req = card:request(url, "POST", data, "Content-Type", "text/json")
   local _, libdata = req:await()
   return libdata
 end
